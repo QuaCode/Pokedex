@@ -76,6 +76,12 @@ export class PokemonService {
     return { error: false, message: `The pokemon with id ${id} was deleted` };
   }
 
+  async fillPokemonsWithSeedData(pokemons: CreatePokemonDto[]) {
+    for (const pokemon of pokemons) {
+      await this.create(pokemon);
+    }
+  }
+
   private handleExceptions(error: any) {
     if (error.code === 11000) {
       throw new BadRequestException(`Pokemon exist in db ${JSON.stringify(error.keyValue)}`);
