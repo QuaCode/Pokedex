@@ -12,6 +12,8 @@ export class SeedService {
   ) {}
 
   async executeSeed() {
+    await this.pokemonModel.deleteMany({}); // Delete * from pokemons
+
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=650')
       .then(res => res.json())
       .then(data => data as PokeResponse);
