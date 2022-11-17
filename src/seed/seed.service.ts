@@ -16,12 +16,15 @@ export class SeedService {
       .then(res => res.json())
       .then(data => data as PokeResponse);
 
+    const seed = [];
+
     for (const pokemon of response.results) {
       const segments = pokemon.url.split('/');
       const no = +segments[segments.length - 2];
-
-      this.pokemonModel.create({ name: pokemon.name, no });
+      seed.push({ name: pokemon.name, no });
     }
+
+    this.pokemonModel.insertMany(seed);
 
     return 'SEED execute successfully';
   }
