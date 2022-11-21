@@ -12,7 +12,8 @@ yarn-error.log*
 lerna-debug.log*
 mongo
 .env
-.env.example
+.env.dev
+.env.staging
 # OS
 .DS_Store
 
